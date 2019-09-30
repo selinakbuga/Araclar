@@ -16,8 +16,8 @@ sleep 2
 
 #####ahtapot_mys indirme veya kurulması
 #ahtapot_mys_indir
-#ahtapot_mys_guncel
-#sleep 2
+ahtapot_mys_guncel
+sleep 2
 
 #####ssh dizini oluşturma
 ssh_directory
