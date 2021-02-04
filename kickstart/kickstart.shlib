@@ -181,6 +181,7 @@ if [ ! -f $dir/.ssh/id_rsa.pub ]; then
         cp $dirkey/"$ahtapotops".pub $dir/.ssh/id_rsa.pub 1>>$log 2>>$hata_log
 	cp $dirkey/ahtapotops-cert.pub $dir/.ssh/id_rsa-cert.pub 1>>$log 2>>$hata_log
 	chown -R ahtapotops:ahtapotops $dir/.ssh/*
+	chmod 600 $dir/.ssh/* 1>>$log 2>>$hata_log
 fi
 ) | dialog --title "SSH Keys Oluşturma" --backtitle "Ahtapot BSGS Kickstart v1.0" --infobox "$dir/.ssh/id_rsa dosyaları oluşturuldu. " 10 70
 }
@@ -192,7 +193,7 @@ if [ ! -f $dir/.ssh/authorized_keys ]; then
         touch $dir/.ssh/authorized_keys 1>>$log 2>>$hata_log
         chmod 700 $dir/.ssh/authorized_keys 1>>$log 2>>$hata_log
         cat $dir/.ssh/id_rsa.pub >> $dir/.ssh/authorized_keys 1>>$log 2>>$hata_log
-        chmod 400 $dir/.ssh/authorized_keys 1>>$log 2>>$hata_log
+        chmod 600 $dir/.ssh/authorized_keys 1>>$log 2>>$hata_log
 	chown -R ahtapotops:ahtapotops $dir/.ssh/*
 fi
 ) | dialog --title "SSH Keys Kontrol" --backtitle "Ahtapot BSGS Kickstart v1.0" --infobox "$dir/.ssh/authorized_keys dosyası oluşturuldu. id_rsa anahtarı authorized keys dosyasına eklendi." 10 70
