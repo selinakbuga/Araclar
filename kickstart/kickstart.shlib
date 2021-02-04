@@ -54,23 +54,11 @@ sleep 1
 #####sourcelist değiştirme
 sourceslist_change() {
 (
-if [ ! -f pardus-archive-keyring_2017.2_all.deb ]; then
-		wget http://depo.pardus.org.tr/pardus/pool/main/p/pardus-archive-keyring/pardus-archive-keyring_2017.2_all.deb 1>>$log 2>>$hata_log
-        fi
-if [ ! -f pardus-yenikusak-public.asc ]; then
-		wget http://depo.pardus.org.tr/pardus-yenikusak-public.asc 1>>$log 2>>$hata_log          
-        fi
-dpkg -i pardus-archive-keyring_2017.2_all.deb 1>>$log 2>>$hata_log
-apt-key add pardus-yenikusak-public.asc 1>>$log 2>>$hata_log
-if [[ ! -e /etc/apt/sources.list.d/depo_pardus_org_tr_ahtapot.list ]];then
-sh -c 'deb [trusted=yes] http://depo.pardus.org.tr/ahtapot yenikusak main >> /etc/apt/sources.list.d/depo_pardus_org_tr_ahtapot.list' 1>>$log 2>>$hata_log
+if [[ ! -e /etc/apt/sources.list.d/ahtapot.list ]];then
+sh -c 'deb http://depo.ahtapot.org.tr/ahtapot stable main >> /etc/apt/sources.list.d/ahtapot.list' 1>>$log 2>>$hata_log
+sh -c 'deb http://depo.ahtapot.org.tr/ahtapot testing main >> /etc/apt/sources.list.d/ahtapot.list' 1>>$log 2>>$hata_log
 fi
-if [[ ! -e /etc/apt/sources.list.d/depo_pardus_org_tr_ahtapot_siem.list ]];then
-sh -c 'deb [trusted=yes] http://depo.pardus.org.tr/ahtapot-siem yenikusak main >> /etc/apt/sources.list.d/depo_pardus_org_tr_ahtapot_siem.list' 1>>$log 2>>$hata_log
-fi
-if [[ ! -e /etc/apt/sources.list.d/depo_pardus_org_tr_pardus_yenikusak.list ]];then
-sh -c 'deb [trusted=yes] http://depo.pardus.org.tr/pardus-yenikusak yenikusak main contrib non-free >> /etc/apt/sources.list.d/depo_pardus_org_tr_pardus_yenikusak.list' 1>>$log 2>>$hata_log
-fi
+sh -c 'deb http://depo.ahtapot.org.tr/ahtapot siem main >> /etc/apt/sources.list.d/ahtapot.list' 1>>$log 2>>$hata_log
 apt-get update -y 1>>$log 2>>$hata_log
 ) |dialog --title "Repo Adresleri Güncelleme" --backtitle "Ahtapot BSGS Kickstart v1.0" --infobox 'Pardus arşiv repolari ekleniyor.Paket kurulumları için gerekli olan repo adresleri ekleniyor. /etc/apt/sources.list repo adresleriniz güncellenmektedir.' 10 70;
 }
