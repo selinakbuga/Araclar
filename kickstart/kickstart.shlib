@@ -132,6 +132,7 @@ if [ ! -d $dir/.ssh ]; then
         mkdir -p $dir/.ssh/ 1>>$log 2>>$hata_log
 	chown -R ahtapotops:ahtapotops $dir/.ssh
         chmod 700 $dir/.ssh 1>>$log 2>>$hata_log
+	chmod 600 $dir/.ssh/* 1>>$log 2>>$hata_log
 fi
 ) | dialog --title "SSH Dizin Kontrol " --backtitle "Ahtapot BSGS Kickstart v1.0" --infobox "ahtapotops kullanıcına ait .ssh dizini oluşturuldu." 10 70
 }
@@ -142,6 +143,7 @@ keys_directory() {
 if [ ! -d $dir/anahtarlar ]; then
         mkdir -p $dir/anahtarlar/  1>>$log 2>>$hata_log
 	chown -R ahtapotops:ahtapotops $dir/anahtarlar
+	chmoh 755 $dir/anahtarlar
 fi
 )  | dialog --title "Anahtarlar Dizin Kontrol" --backtitle "Ahtapot BSGS Kickstart v1.0" --infobox "ahtapotops kullanıcının ev dizininde anahtarlar dizini oluştuldu." 10 70
 }
@@ -150,6 +152,7 @@ fi
 anahtar_olusturma() {
 (
 rm -rf $dirkey/*
+apt install ca-certificates -y
 ssh-keygen -N '' -f $dirkey/"$ahtapotops" 1>>$log 2>>$hata_log
 ssh-keygen -N '' -f $dirkey/"$ahtapot_ca" 1>>$log 2>>$hata_log
 ssh-keygen -N '' -f $dirkey/"$git" 1>>$log 2>>$hata_log
