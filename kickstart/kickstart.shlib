@@ -113,7 +113,7 @@ cd /tmp
                 rm -rf /tmp/MYS 1>>$log 2>>$hata_log
                 git clone -b development https://github.com/Pardus-Ahtapot/MYS.git 1>>$log 2>>$hata_log
         fi
-rm -rf /etc/ansible/* 1>>$log 2>>$hata_log && cp -rf /tmp/MYS/ahtapotmys/* /etc/ansible/ 1>>$log 2>>$hata_log && chown -R ahtapotops:ahtapotops /etc/ansible 1>>$log 2>>$hata_log && chown ahtapotops:ahtapotops -R /var/log/ahtapot 1>>$log 2>>$hata_log 
+rm -rf /etc/ansible/* 1>>$log 2>>$hata_log && cp -rf /tmp/MYS/ahtapotmys/* /etc/ansible/ 1>>$log 2>>$hata_log && chown -R ahtapotops:ahtapotops /etc/ansible 1>>$log 2>>$hata_log && chown ahtapotops:ahtapotops -R /var/log/ahtapot 1>>$log 2>>$hata_log && chown ahtapotops:ahtapotops -R /etc/ansible/ 1>>$log 2>>$hata_log 
 ) | dialog --title "Paket Güncelleme" --backtitle "Ahtapot BSGS Kickstart v1.0"  --infobox "Ahtapot Merkezi Yönetim Sistemi yetkilendirmeleri düzenleniyor."  10 70
 }
 
